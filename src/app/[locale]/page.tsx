@@ -11,6 +11,8 @@ export default async function HomePage({
 }) {
   const t = await getTranslations('home');
   const tNav = await getTranslations('nav');
+  const tListings = await getTranslations('listings');
+  const tJobs = await getTranslations('jobs');
 
   const [listings, jobs] = await Promise.all([
     prisma.listing.findMany({
@@ -58,7 +60,7 @@ export default async function HomePage({
           </Link>
         </div>
         {listings.length === 0 ? (
-          <p className="text-gray-500">Нет объявлений</p>
+          <p className="text-gray-500">{tListings('noListings')}</p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {listings.map((listing) => (
@@ -77,7 +79,7 @@ export default async function HomePage({
           </Link>
         </div>
         {jobs.length === 0 ? (
-          <p className="text-gray-500">Нет вакансий</p>
+          <p className="text-gray-500">{tJobs('noJobs')}</p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {jobs.map((job) => (

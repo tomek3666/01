@@ -40,7 +40,7 @@ export default function AdminPage({
     if (status === 'authenticated') {
       fetchAll();
     }
-  }, [status]);
+  }, [status, session, locale, router]);
 
   async function fetchAll() {
     const [l, j, r] = await Promise.all([

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { getLocalizedField } from '@/lib/utils';
 
 interface JobCardProps {
@@ -20,6 +21,7 @@ interface JobCardProps {
 
 export default function JobCard({ job, locale }: JobCardProps) {
   const title = getLocalizedField(job, 'title', locale);
+  const t = useTranslations('jobs');
 
   return (
     <Link href={`/${locale}/jobs/${job.id}`}>
@@ -31,7 +33,7 @@ export default function JobCard({ job, locale }: JobCardProps) {
           )}
         </div>
         <span className="inline-block bg-green-50 text-green-600 text-xs px-2 py-0.5 rounded-full mb-3">
-          Вакансия
+          {t('vacancy')}
         </span>
         <p className="text-xs text-gray-500 flex items-center gap-1">
           <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">

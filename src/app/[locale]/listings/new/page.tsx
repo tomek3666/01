@@ -19,7 +19,7 @@ export default function NewListingPage({
   const t = useTranslations('listings');
   const tCommon = useTranslations('common');
   const router = useRouter();
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({

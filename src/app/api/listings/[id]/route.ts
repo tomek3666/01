@@ -35,15 +35,13 @@ export async function PATCH(
 
   const allowedFields: any = {};
   if (isAdmin && body.status) allowedFields.status = body.status;
-  if (!isAdmin || isAdmin) {
-    if (body.titleTj) allowedFields.titleTj = body.titleTj;
-    if (body.titleRu) allowedFields.titleRu = body.titleRu;
-    if (body.descTj) allowedFields.descTj = body.descTj;
-    if (body.descRu) allowedFields.descRu = body.descRu;
-    if (body.price !== undefined) allowedFields.price = body.price;
-    if (body.location) allowedFields.location = body.location;
-    if (body.phone) allowedFields.phone = body.phone;
-  }
+  if (body.titleTj) allowedFields.titleTj = body.titleTj;
+  if (body.titleRu) allowedFields.titleRu = body.titleRu;
+  if (body.descTj) allowedFields.descTj = body.descTj;
+  if (body.descRu) allowedFields.descRu = body.descRu;
+  if (body.price !== undefined) allowedFields.price = body.price;
+  if (body.location) allowedFields.location = body.location;
+  if (body.phone) allowedFields.phone = body.phone;
 
   const updated = await prisma.listing.update({
     where: { id: params.id },

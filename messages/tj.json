@@ -1,0 +1,91 @@
+{
+  "nav": {
+    "home": "Асосӣ",
+    "marketplace": "Бозор",
+    "jobs": "Кор",
+    "profile": "Профил",
+    "admin": "Идора",
+    "login": "Вуруд",
+    "logout": "Хуруҷ"
+  },
+  "common": {
+    "create": "Эҷод кардан",
+    "save": "Сабт кардан",
+    "cancel": "Бекор кардан",
+    "loading": "Боргузорӣ...",
+    "draft": "Лоиҳа",
+    "published": "Нашр шудааст",
+    "blocked": "Баст шудааст",
+    "publish": "Нашр кардан",
+    "block": "Бастан",
+    "delete": "Ҳазф кардан",
+    "edit": "Таҳрир кардан",
+    "viewAll": "Ҳама дидан",
+    "noItems": "Чизе нест"
+  },
+  "listings": {
+    "title": "Эълонҳо",
+    "description": "Тавсиф",
+    "price": "Нарх",
+    "location": "Макон",
+    "phone": "Телефон",
+    "category": "Категория",
+    "createListing": "Эълон эҷод кардан",
+    "titleTj": "Сарлавҳа (тоҷикӣ)",
+    "titleRu": "Сарлавҳа (русӣ)",
+    "descTj": "Тавсиф (тоҷикӣ)",
+    "descRu": "Тавсиф (русӣ)",
+    "marketplace": "Бозор",
+    "noListings": "Эълон нест"
+  },
+  "jobs": {
+    "vacancy": "Вакансия",
+    "resume": "Резюме",
+    "title": "Корҳо",
+    "description": "Тавсиф",
+    "salary": "Маош",
+    "experience": "Таҷриба",
+    "phone": "Телефон",
+    "location": "Макон",
+    "createVacancy": "Вакансия эҷод кардан",
+    "createResume": "Резюме эҷод кардан",
+    "titleTj": "Сарлавҳа (тоҷикӣ)",
+    "titleRu": "Сарлавҳа (русӣ)",
+    "descTj": "Тавсиф (тоҷикӣ)",
+    "descRu": "Тавсиф (русӣ)",
+    "vacancies": "Вакансияҳо",
+    "resumes": "Резюмеҳо",
+    "noJobs": "Кор нест",
+    "noResumes": "Резюме нест"
+  },
+  "auth": {
+    "username": "Номи корбар",
+    "password": "Парол",
+    "signIn": "Вуруд",
+    "signOut": "Хуруҷ",
+    "loginTitle": "Вуруд ба система",
+    "invalidCredentials": "Номи корбар ё парол нодуруст аст"
+  },
+  "admin": {
+    "title": "Панели идоракунӣ",
+    "moderation": "Тафтиш",
+    "pendingItems": "Дар интизор",
+    "allListings": "Ҳама эълонҳо",
+    "allJobs": "Ҳама вакансияҳо",
+    "allResumes": "Ҳама резюмеҳо"
+  },
+  "profile": {
+    "title": "Профили ман",
+    "myListings": "Эълонҳои ман",
+    "myJobs": "Вакансияҳои ман",
+    "myResumes": "Резюмеҳои ман"
+  },
+  "home": {
+    "hero": "Хуш омадед ба Ашт",
+    "heroSub": "Платформаи огаҳиномаҳо ва вакансияҳо",
+    "latestListings": "Охирин эълонҳо",
+    "latestJobs": "Охирин вакансияҳо",
+    "postListing": "Эълон гузоред",
+    "postJob": "Вакансия гузоред"
+  }
+}

@@ -1,0 +1,97 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum Status {
+  DRAFT
+  PUBLISHED
+  BLOCKED
+}
+
+enum CategoryType {
+  MARKETPLACE
+  JOB
+}
+
+model User {
+  id             String    @id @default(cuid())
+  username       String    @unique
+  name           String?
+  role           Role      @default(USER)
+  hashedPassword String
+  createdAt      DateTime  @default(now())
+  listings       Listing[]
+  jobs           Job[]
+  resumes        Resume[]
+}
+
+model Category {
+  id        String       @id @default(cuid())
+  nameTj    String
+  nameRu    String
+  type      CategoryType
+  createdAt DateTime     @default(now())
+  listings  Listing[]
+}
+
+model Listing {
+  id         String   @id @default(cuid())
+  userId     String
+  categoryId String
+  titleTj    String
+  titleRu    String
+  descTj     String
+  descRu     String
+  price      Float?
+  location   String
+  phone      String
+  status     Status   @default(DRAFT)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  user       User     @relation(fields: [userId], references: [id])
+  category   Category @relation(fields: [categoryId], references: [id])
+}
+
+model Job {
+  id        String   @id @default(cuid())
+  userId    String
+  titleTj   String
+  titleRu   String
+  descTj    String
+  descRu    String
+  salary    String?
+  location  String
+  phone     String
+  status    Status   @default(DRAFT)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model Resume {
+  id         String   @id @default(cuid())
+  userId     String
+  titleTj    String
+  titleRu    String
+  descTj     String
+  descRu     String
+  experience String?
+  phone      String
+  status     Status   @default(DRAFT)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  user       User     @relation(fields: [userId], references: [id])
+}

@@ -5,10 +5,11 @@ import { prisma } from '@/lib/prisma';
 
 export async function GET(
   _req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const resume = await prisma.resume.findUnique({
-    where: { id: params.id },
+    where: { id },
     include: { user: { select: { id: true, username: true, name: true } } },
   });
 
@@ -18,15 +19,16 @@ export async function GET(
 
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const session = await getServerSession(authOptions);
   if (!session?.user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
   const body = await req.json();
   const isAdmin = (session.user as any).role === 'ADMIN';
 
-  const resume = await prisma.resume.findUnique({ where: { id: params.id } });
+  const resume = await prisma.resume.findUnique({ where: { id } });
   if (!resume) return NextResponse.json({ error: 'Not found' }, { status: 404 });
 
   if (!isAdmin && resume.userId !== session.user.id) {
@@ -43,7 +45,7 @@ export async function PATCH(
   if (body.phone) allowedFields.phone = body.phone;
 
   const updated = await prisma.resume.update({
-    where: { id: params.id },
+    where: { id },
     data: allowedFields,
   });
 
@@ -52,12 +54,13 @@ export async function PATCH(
 
 export async function DELETE(
   _req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const session = await getServerSession(authOptions);
   if (!session?.user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
-  const resume = await prisma.resume.findUnique({ where: { id: params.id } });
+  const resume = await prisma.resume.findUnique({ where: { id } });
   if (!resume) return NextResponse.json({ error: 'Not found' }, { status: 404 });
 
   const isAdmin = (session.user as any).role === 'ADMIN';
@@ -65,6 +68,6 @@ export async function DELETE(
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
   }
 
-  await prisma.resume.delete({ where: { id: params.id } });
+  await prisma.resume.delete({ where: { id } });
   return NextResponse.json({ success: true });
 }

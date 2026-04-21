@@ -5,10 +5,11 @@ import { prisma } from '@/lib/prisma';
 import { getLocalizedField, formatPrice } from '@/lib/utils';
 
 export default async function ListingDetailPage({
-  params: { locale, id },
+  params,
 }: {
-  params: { locale: string; id: string };
+  params: Promise<{ locale: string; id: string }>;
 }) {
+  const { locale, id } = await params;
   const t = await getTranslations('listings');
   const tCommon = await getTranslations('common');
 

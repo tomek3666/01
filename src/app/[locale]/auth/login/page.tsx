@@ -1,15 +1,16 @@
 'use client';
 
-import { useState } from 'react';
+import { use, useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
 export default function LoginPage({
-  params: { locale },
+  params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = use(params);
   const t = useTranslations('auth');
   const router = useRouter();
   const [username, setUsername] = useState('');

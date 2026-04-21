@@ -5,10 +5,11 @@ import { prisma } from '@/lib/prisma';
 import { getLocalizedField } from '@/lib/utils';
 
 export default async function ResumeDetailPage({
-  params: { locale, id },
+  params,
 }: {
-  params: { locale: string; id: string };
+  params: Promise<{ locale: string; id: string }>;
 }) {
+  const { locale, id } = await params;
   const t = await getTranslations('jobs');
 
   const resume = await prisma.resume.findUnique({

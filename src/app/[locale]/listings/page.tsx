@@ -4,10 +4,11 @@ import { prisma } from '@/lib/prisma';
 import ListingCard from '@/components/ListingCard';
 
 export default async function ListingsPage({
-  params: { locale },
+  params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
   const t = await getTranslations('listings');
 
   const listings = await prisma.listing.findMany({

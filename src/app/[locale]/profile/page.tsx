@@ -7,10 +7,11 @@ import { prisma } from '@/lib/prisma';
 import { getLocalizedField } from '@/lib/utils';
 
 export default async function ProfilePage({
-  params: { locale },
+  params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
   const session = await getServerSession(authOptions);
   if (!session?.user) redirect(`/${locale}/auth/login`);
 

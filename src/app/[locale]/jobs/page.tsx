@@ -5,14 +5,16 @@ import JobCard from '@/components/JobCard';
 import ResumeCard from '@/components/ResumeCard';
 
 export default async function JobsPage({
-  params: { locale },
+  params,
   searchParams,
 }: {
-  params: { locale: string };
-  searchParams: { tab?: string };
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<{ tab?: string }>;
 }) {
+  const { locale } = await params;
+  const { tab: tabParam } = await searchParams;
+  const tab = tabParam === 'resumes' ? 'resumes' : 'vacancies';
   const t = await getTranslations('jobs');
-  const tab = searchParams.tab === 'resumes' ? 'resumes' : 'vacancies';
 
   const [jobs, resumes] = await Promise.all([
     prisma.job.findMany({

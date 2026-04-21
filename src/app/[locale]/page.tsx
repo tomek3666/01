@@ -5,10 +5,11 @@ import ListingCard from '@/components/ListingCard';
 import JobCard from '@/components/JobCard';
 
 export default async function HomePage({
-  params: { locale },
+  params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
   const t = await getTranslations('home');
   const tNav = await getTranslations('nav');
   const tListings = await getTranslations('listings');

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { use, useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
@@ -14,10 +14,11 @@ interface Item {
 }
 
 export default function AdminPage({
-  params: { locale },
+  params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = use(params);
   const { data: session, status } = useSession();
   const router = useRouter();
   const t = useTranslations('admin');
